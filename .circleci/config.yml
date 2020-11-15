@@ -4,7 +4,7 @@ version: 2.1
 orbs:
   # Declare a dependency on the welcome-orb
   jobs:
-  welcome: circleci/welcome-orb@0.4.1
+ #welcome: circleci/welcome-orb@0.4.1
   
   print_hello: 
     docker:
@@ -29,7 +29,7 @@ workflows:
   welcome:
     # Run the welcome/run job in its own container
     jobs:
-      - welcome/run
+    #  - welcome/run
       - print_hello
       - print_world:
           requires: [print_hello]
