@@ -23,8 +23,11 @@ jobs:
       #Show what a failure looks like in circle ci
       - run:
           return 1
-      - when: on_fail
-          echo "Hello failure"
+      - run:
+          name: Error
+          command: echo "Hello failure"
+          when: on_fail
+          
 
 
 #Creating outputs that are reusable between jobs
