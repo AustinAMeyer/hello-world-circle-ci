@@ -2,6 +2,7 @@
 version: 2.1
 # Use a package of configuration called an orb.
 
+#Using commands and reusing code
 commands:
     print_pipeline_id:
       description: "Prints circle ci workflow ID from enviroment variable"
@@ -19,7 +20,15 @@ jobs:
     steps:
       - print_pipeline_id:
           to: $CIRCLE_WORKFLOW_ID
+      #Show what a failure looks like in circle ci
+      - run:
+          return 1
+      - run:
+          echo "Hello failure"
+          when: on_fail
 
+
+#Creating outputs that are reusable between jobs
   # save_hello_world_output: 
   #   docker:
   #     - image: circleci/node:13.8.0
@@ -40,7 +49,7 @@ jobs:
   #     - run: 
   #         cat ~/output.txt
 
-
+# printing Hello and world
   # print_hello: 
   #   docker:
   #     - image: circleci/node:13.8.0
@@ -54,7 +63,8 @@ jobs:
   #   steps: 
   #     - run: 
   #         echo "World"
-  
+
+  #Using enviroment variables to print an output
   # print_name:
   #   docker:
   #     - image: circleci/node:13.8.0
@@ -70,11 +80,18 @@ workflows:
   welcome:
     # Run the welcome/run job in its own container
     jobs:
+  #Printing out the commands that I have created in an enviroment variable
         - circleWorkflowID
+    
+  #Prints from the ooutput file that I put in place
       #  - save_hello_world_output
       #  - print_output_file:
       #       requires: [save_hello_world_output]
+
+  #Printing out Hello world in the correct order
       # - print_hello
       # - print_world:
       #     requires: [print_hello]
+
+  #Prints name from Enviroment variable
       # - print_name
