@@ -17,11 +17,11 @@ jobs:
   print_output_file:
     docker:
       - image: circleci/node:13.8.0
-      steps: 
-        - attach_workspace:
-            at: /tmp/workspace
-        - run: 
-            cat output.txt
+    steps: 
+      - attach_workspace:
+          at: /tmp/workspace
+      - run: 
+          cat output.txt
 
 
   # print_hello: 
