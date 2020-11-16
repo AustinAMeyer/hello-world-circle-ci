@@ -23,7 +23,7 @@ jobs:
       #Show what a failure looks like in circle ci
       - run:
           return 1
-          when: on_fail
+      - when: on_fail
           echo "Hello failure"
 
 
